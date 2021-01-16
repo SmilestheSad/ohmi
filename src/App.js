@@ -1,8 +1,7 @@
 import './App.less'
 import React, {useState} from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import {Divider, Layout, Menu, Space, Typography} from 'antd'
-import {GithubOutlined} from '@ant-design/icons'
+import {Layout, Menu} from 'antd'
 
 import About from './components/About'
 import CreateOhmi from './components/CreateOhmi'
@@ -10,9 +9,10 @@ import CreateOhmi from './components/CreateOhmi'
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
+import OhmiFooter from "./components/OhmiFooter";
 
 if (!firebase.apps.length) {
-    firebase.initializeApp({   
+    firebase.initializeApp({
       apiKey: process.env.REACT_APP_API_KEY,
       authDomain: "uomi-6ffa3.firebaseapp.com",
       projectId: "uomi-6ffa3",
@@ -24,7 +24,7 @@ if (!firebase.apps.length) {
     firebase.app(); // if already initialized, use that one
   }
 
-  
+
 const { Header, Content, Footer } = Layout;
 
 function App() {
@@ -55,13 +55,7 @@ function App() {
               {currentTab === "2" ? <Route path="" component={CreateOhmi} /> : null}
             </div>
           </Content>
-          <Footer style={{ textAlign: 'center' }}>
-              <Space split={<Divider type={'vertical'}/>}>
-                  <Typography.Text>Created with React and Ant Design</Typography.Text>
-                  <Typography.Text>Team VAGA</Typography.Text>
-                  <Typography.Link href={'https://github.com/SmilestheSad/ohmi'} target={'_blank'}><GithubOutlined/></Typography.Link>
-              </Space>
-          </Footer>
+          <OhmiFooter/>
         </Layout>
       </Router>
     </div>
