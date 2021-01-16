@@ -5,12 +5,6 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-import {useAuthState} from 'react-firebase-hooks/auth';
-import {useCollectionData} from 'react-firebase-hooks/firestore';
-
-
-
-
 firebase.initializeApp({
     apiKey: process.env.REACT_APP_API_KEY,
     authDomain: "uomi-6ffa3.firebaseapp.com",
@@ -20,10 +14,6 @@ firebase.initializeApp({
     appId: "1:1008281417322:web:f1a99ea98dc47d0de1fc13",
     measurementId: "G-9ZSHHNLGQJ"
 })
-
-const auth = firebase.auth();
-const firestore = firebase.firestore();
-
 
 const {Header, Content, Footer} = Layout;
 
