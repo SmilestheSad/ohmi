@@ -1,33 +1,62 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import OhmiCard from './OhmiCard'
-import { data } from '../testing'
 import firebase from './firebase.js'
-import { useCollection } from 'react-firebase-hooks/firestore';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { useCollection } from 'react-firebase-hooks/firestore'
+import { useAuthState } from 'react-firebase-hooks/auth'
 
-
-export default function SentOhmies() {
-  const [user, userLoading, userError] = useAuthState(firebase.auth())
-
-  const [db, dbLoading, dbError] = useCollection(
-    user && firebase.firestore().collection('ohmies').where('sender', '==', user.uid)
+export default function SentOhmies () {
+  const [user] = useAuthState(firebase.auth())
+  const [db] = useCollection(firebase.firestore()
+    .collection('ohmies')
+    .where('sender', '==', user ? user.uid : 'test_user'),
   )
+  const [ohmiData, setOhmiData] = useState([])
 
-  console.log(user)
-  console.log(db)
+  useEffect(() => {
+    if (db === null || db === undefined) {
+      return
+    }
+    const newOhmiData = []
+    Promise.all(db.docs.map((doc, idx) => {
+      const ohmi = {}
+      const data = doc.data()
+      ohmi.id = doc.id
+      ohmi.title = data.title
+      ohmi.description = data.description
+      const receiverPromise = firebase.firestore()
+        .collection('users')
+        .doc(data.receiver)
+        .get()
+        .then((snapshot) => {
+          ohmi.receiver = snapshot.get('name')
+        })
+      const senderPromise = firebase.firestore()
+        .collection('users')
+        .doc(data.sender)
+        .get()
+        .then((snapshot) => {
+          ohmi.sender = snapshot.get('name')
+        })
+      return Promise.all([receiverPromise, senderPromise])
+        .then(() => {newOhmiData[idx] = ohmi})
+    })).then(() => {
+      setOhmiData(newOhmiData)
+    })
+  }, [db])
 
   return (
     <div>
       <h1>Sent Ohmies</h1>
       <div style={{ display: 'flex' }}>
-        {/* {db && db.map(ohmi =>
+        {ohmiData.map(ohmi =>
           <OhmiCard
-            to={ohmi.to}
-            from={ohmi.from}
+            key={ohmi.id}
+            to={ohmi.receiver}
+            from={ohmi.sender}
             title={ohmi.title}
-            desc={ohmi.desc}
-          />
-        )} */}
+            desc={ohmi.description}
+          />,
+        )}
       </div>
     </div>
   )

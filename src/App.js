@@ -38,12 +38,12 @@ function App () {
           }
         <LoginButton style = {{float: "right", top: "100%", marginTop: 15 }}/> 
         </Menu>
-      
+
       </Header>
       <Content
         style={{ padding: '0 50px', marginTop: 20 }}>
         <div
-          style={{ padding: 24, minHeight: 380 }}>
+          style={{ minHeight: 380 }}>
           {pages[currentTab].component}
         </div>
       </Content>

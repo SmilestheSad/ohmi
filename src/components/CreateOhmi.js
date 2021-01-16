@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { Form, Input, Button, Select } from 'antd'
 import firebase from 'firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { UserAddOutlined } from '@ant-design/icons';
 
 const { Option } = Select;
 
@@ -44,8 +43,8 @@ export default function CreateOhmi() {
       `to: ${values.cardReceiver} from: ${user.uid} title: ${values.cardTitle} desc: ${values.cardDesc}`)
     firebase.firestore().collection('ohmies')
       .add({
-        sender: `users/${user.uid}`,
-        receiver: `users/${values.cardReceiver}`,
+        sender: user.uid,
+        receiver: values.cardReceiver,
         title: values.cardTitle,
         description: values.cardDesc,
       })
@@ -57,15 +56,8 @@ export default function CreateOhmi() {
     form.resetFields()
   }
 
-  const onFill = () => {
-    form.setFieldsValue({
-      note: 'Hello world!',
-      gender: 'male',
-    })
-  }
-
   return (
-    <div>
+    <div >
       <Form justify="center" {...layout} form={form} name="control-hooks"
         onFinish={onFinish}>
       <Form.Item
@@ -104,9 +96,6 @@ export default function CreateOhmi() {
           </Button>
           <Button htmlType="button" onClick={onReset}>
             Reset
-          </Button>
-          <Button type="link" htmlType="button" onClick={onFill}>
-            Fill form
           </Button>
         </Form.Item>
       </Form>
