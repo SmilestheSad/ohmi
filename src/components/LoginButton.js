@@ -5,14 +5,14 @@ import { Button, Modal } from 'antd'
 import { GoogleOutlined } from '@ant-design/icons'
 
 export default function LoginButton () {
-  const [user, loading, error] = useAuthState(firebase.auth())
+  const [user, loading] = useAuthState(firebase.auth())
   const [modalVisible, setModalVisible] = useState(false)
   const showModal = () => {setModalVisible(true)}
   const closeModal = () => {setModalVisible(false)}
   const signInWithGoogle = () => {
     firebase.auth()
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
-      .then(result => {
+      .then(() => {
         setModalVisible(false)
       })
   }
@@ -20,7 +20,6 @@ export default function LoginButton () {
     console.log('logging out')
     firebase.auth().signOut().then(result => {
       console.log(result)
-      console.log(user)
     }).catch(error => {console.log(error)})
   }
   useEffect(
