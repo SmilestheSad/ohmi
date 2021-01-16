@@ -23,7 +23,7 @@ if (!firebase.apps.length) {
     firebase.app(); // if already initialized, use that one
   }
 
-  
+
 const { Header, Content, Footer } = Layout;
 
 function App() {
@@ -43,15 +43,16 @@ function App() {
             selectedKeys={[currentTab]}
             theme="dark" mode="horizontal">
               <Menu.Item key="1">Home<Link to="" /></Menu.Item>
-              <Menu.Item key="2">Sent Ohmies<Link to="/CreateOhmi" /></Menu.Item>
+              <Menu.Item key="2">Sent Ohmies<Link to="SentHomies" /></Menu.Item>
               <Menu.Item key="3">Received Ohmies</Menu.Item>
-              <Menu.Item key="4">Create an Ohmi</Menu.Item>
+              <Menu.Item key="4">Create an Ohmi<Link to="CreateOhmi" /></Menu.Item>
             </Menu>
           </Header>
           <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
             <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
               {currentTab === "1" ? <Route path="" component={About} /> : null}
               {currentTab === "2" ? <Route path="" component={CreateOhmi} /> : null}
+              {currentTab === "4" ? <Route path="" component={CreateOhmi} /> : null}
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>Created by Team VAGA</Footer>
