@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import LoginButton from './LoginButton'
-import firebase from './firebase'
+import firebase from 'firebase/app'
 
 export default function About () {
   const [users, setUsers] = useState([])

@@ -62,9 +62,6 @@ export default function ReceivedOhmies () {
           />,
         )}
       </div>
-      {db && db.forEach((doc) => {
-        return doc.data().title
-      })}
     </div>
   )
 }
