@@ -32,39 +32,37 @@ const { Header, Content } = Layout
 function App () {
   const [currentTab, setCurrentTab] = useState('1')
 
-  const handleClick = (e) => {
-    setCurrentTab(e.key)
+  const changeTab = ({ key }) => {
+    setCurrentTab(key)
   }
+
+  const pages = [
+    { pageName: 'About', component: About },
+    { pageName: 'Sent Ohmies', component: SentOhmies },
+    { pageName: 'Received Ohmies', component: ReceivedOhmies },
+    { pageName: 'Create an Ohmi', component: CreateOhmi },
+  ]
 
   return (
     <div className="App">
       <Router>
         <Layout>
-          <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
+          <Header>
             <div className="logo"/>
-            <Menu onClick={handleClick}
+            <Menu onClick={changeTab}
                   selectedKeys={[currentTab]}
                   theme="dark" mode="horizontal">
-              <Menu.Item key="1">About</Menu.Item>
-              <Menu.Item key="2">Sent Ohmies</Menu.Item>
-              <Menu.Item key="3">Received Ohmies</Menu.Item>
-              <Menu.Item key="4">Create an Ohmi</Menu.Item>
+              {pages.map(
+                (val, idx) =>
+                  <Menu.Item key={idx}>{val.pageName}</Menu.Item>)
+              }
             </Menu>
           </Header>
-          <Content className="site-layout"
-                   style={{ padding: '0 50px', marginTop: 64 }}>
-            <div className="site-layout-background"
-                 style={{ padding: 24, minHeight: 380 }}>
-              {currentTab === '1' ? <Route path="" component={About}/> : null}
-              {currentTab === '2'
-                ? <Route path="" component={SentOhmies}/>
-                : null}
-              {currentTab === '3'
-                ? <Route path="" component={ReceivedOhmies}/>
-                : null}
-              {currentTab === '4'
-                ? <Route path="" component={CreateOhmi}/>
-                : null}
+          <Content
+            style={{ padding: '0 50px', marginTop: 64 }}>
+            <div
+              style={{ padding: 24, minHeight: 380 }}>
+              <Route path="" component={pages[currentTab].component}/>
             </div>
           </Content>
           <OhmiFooter/>
