@@ -1,9 +1,10 @@
 import './App.less'
-import {Layout, Menu, Breadcrumb} from 'antd'
+import React, {useState} from 'react'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import {Layout, Menu} from 'antd'
 
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
+import About from './components/About'
+import CreateOhmi from './components/CreateOhmi'
 
 firebase.initializeApp({
     apiKey: process.env.REACT_APP_API_KEY,
@@ -15,34 +16,41 @@ firebase.initializeApp({
     measurementId: "G-9ZSHHNLGQJ"
 })
 
-const {Header, Content, Footer} = Layout;
+const { Header, Content, Footer } = Layout;
 
 function App() {
-    return (
-        <div className="App">
-            <Layout>
-                <Header style={{position: 'fixed', zIndex: 1, width: '100%'}}>
-                    <div className="logo"/>
-                    <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-                        <Menu.Item key="1">nav 1</Menu.Item>
-                        <Menu.Item key="2">nav 2</Menu.Item>
-                        <Menu.Item key="3">nav 3</Menu.Item>
-                    </Menu>
-                </Header>
-                <Content className="site-layout" style={{padding: '0 50px', marginTop: 64}}>
-                    <Breadcrumb style={{margin: '16px 0'}}>
-                        <Breadcrumb.Item>Home</Breadcrumb.Item>
-                        <Breadcrumb.Item>List</Breadcrumb.Item>
-                        <Breadcrumb.Item>App</Breadcrumb.Item>
-                    </Breadcrumb>
-                    <div className="site-layout-background" style={{padding: 24, minHeight: 380}}>
-                        Content
-                    </div>
-                </Content>
-                <Footer style={{textAlign: 'center'}}>Ant Design ©2018 Created by Ant UED</Footer>
-            </Layout>
-        </div>
-    );
+  const [currentTab, setCurrentTab] = useState("1")
+
+  const handleClick = (e) => {
+    setCurrentTab(e.key)
+  }
+
+  return (
+    <div className="App">
+      <Router>
+        <Layout>
+          <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
+            <div className="logo" />
+            <Menu onClick={handleClick}
+            selectedKeys={[currentTab]}
+            theme="dark" mode="horizontal">
+              <Menu.Item key="1">Home<Link to="" /></Menu.Item>
+              <Menu.Item key="2">Sent Ohmies<Link to="/CreateOhmi" /></Menu.Item>
+              <Menu.Item key="3">Received Ohmies</Menu.Item>
+              <Menu.Item key="4">Create an Ohmi</Menu.Item>
+            </Menu>
+          </Header>
+          <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
+            <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
+              {currentTab === "1" ? <Route path="" component={About} /> : null}
+              {currentTab === "2" ? <Route path="" component={CreateOhmi} /> : null}
+            </div>
+          </Content>
+          <Footer style={{ textAlign: 'center' }}>Created by Team VAGA</Footer>
+        </Layout>
+      </Router>
+    </div>
+  );
 }
 
 export default App;
