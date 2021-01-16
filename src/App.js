@@ -1,6 +1,5 @@
 import './App.less'
 import React, { useState } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Layout, Menu } from 'antd'
 
 import About from './components/About'
@@ -30,45 +29,41 @@ if (!firebase.apps.length) {
 const { Header, Content } = Layout
 
 function App () {
-  const [currentTab, setCurrentTab] = useState('1')
+  const [currentTab, setCurrentTab] = useState('0')
 
   const changeTab = ({ key }) => {
     setCurrentTab(key)
   }
 
   const pages = [
-    { pageName: 'About', component: About },
-    { pageName: 'Sent Ohmies', component: SentOhmies },
-    { pageName: 'Received Ohmies', component: ReceivedOhmies },
-    { pageName: 'Create an Ohmi', component: CreateOhmi },
+    { pageName: 'About', component: <About/> },
+    { pageName: 'Sent Ohmies', component: <SentOhmies/> },
+    { pageName: 'Received Ohmies', component: <ReceivedOhmies/> },
+    { pageName: 'Create an Ohmi', component: <CreateOhmi/> },
   ]
 
   return (
-    <div className="App">
-      <Router>
-        <Layout>
-          <Header>
-            <div className="logo"/>
-            <Menu onClick={changeTab}
-                  selectedKeys={[currentTab]}
-                  theme="dark" mode="horizontal">
-              {pages.map(
-                (val, idx) =>
-                  <Menu.Item key={idx}>{val.pageName}</Menu.Item>)
-              }
-            </Menu>
-          </Header>
-          <Content
-            style={{ padding: '0 50px', marginTop: 64 }}>
-            <div
-              style={{ padding: 24, minHeight: 380 }}>
-              <Route path="" component={pages[currentTab].component}/>
-            </div>
-          </Content>
-          <OhmiFooter/>
-        </Layout>
-      </Router>
-    </div>
+    <Layout>
+      <Header>
+        <div className="logo"/>
+        <Menu onClick={changeTab}
+              selectedKeys={[currentTab]}
+              theme="dark" mode="horizontal">
+          {pages.map(
+            (val, idx) =>
+              <Menu.Item key={idx}>{val.pageName}</Menu.Item>)
+          }
+        </Menu>
+      </Header>
+      <Content
+        style={{ padding: '0 50px', marginTop: 64 }}>
+        <div
+          style={{ padding: 24, minHeight: 380 }}>
+          {pages[currentTab].component}
+        </div>
+      </Content>
+      <OhmiFooter/>
+    </Layout>
   )
 }
 
