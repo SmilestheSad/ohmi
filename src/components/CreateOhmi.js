@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
 import { Form, Input, Button } from 'antd'
 import firebase from 'firebase'
+import { useAuthState } from 'react-firebase-hooks/auth'
 
 const layout = {
   labelCol: {
@@ -18,26 +18,21 @@ const tailLayout = {
 }
 
 export default function CreateOhmi () {
-  const [cardReceiver, setCardReceiver] = useState('')
-  const [cardSender, setCardSender] = useState('')
-  const [cardTitle, setCardTitle] = useState('')
-  const [cardDesc, setCardDesc] = useState('')
+  const [user] = useAuthState(firebase.auth())
   const [form] = Form.useForm()
 
   const onFinish = (values) => {
-    setCardReceiver(values.cardTo)
-    setCardSender(values.cardFrom)
-    setCardTitle(values.cardTitle)
-    setCardDesc(values.cardDesc)
-    const db = firebase.firestore()
+    if (!user) {
+      return
+    }
     console.log(
-      `to: ${cardReceiver} from: ${cardSender} title: ${cardTitle} desc: ${cardDesc}`)
-    db.collection('ohmies')
+      `to: ${values.cardReceiver} from: ${user.uid} title: ${values.cardTitle} desc: ${values.cardDesc}`)
+    firebase.firestore().collection('ohmies')
       .add({
-        sender: cardSender,
-        receiver: cardReceiver,
-        title: cardTitle,
-        description: cardDesc,
+        sender: `users/${user.uid}`,
+        receiver: `users/${values.cardReceiver}`,
+        title: values.cardTitle,
+        description: values.cardDesc,
       })
 
     form.resetFields()
@@ -59,15 +54,8 @@ export default function CreateOhmi () {
       <Form justify="center" {...layout} form={form} name="control-hooks"
             onFinish={onFinish}>
         <Form.Item
-          name="cardTo"
+          name="cardReceiver"
           label="To"
-          rules={[{ required: true }]}
-        >
-          <Input/>
-        </Form.Item>
-        <Form.Item
-          name="cardFrom"
-          label="From"
           rules={[{ required: true }]}
         >
           <Input/>
