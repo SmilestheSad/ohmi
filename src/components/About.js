@@ -15,7 +15,7 @@ export default function About () {
     <div>
       <h1>explanation here about what ohmi is</h1>
       {users.map(user => (
-        <li key={user.name}>{user.name}</li>
+        <li key={user.uid}>{user.name}</li>
       ))}
     </div>
   )

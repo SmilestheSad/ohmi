@@ -22,7 +22,7 @@ function App () {
     { pageName: 'About', component: <About/> },
     { pageName: 'Sent Ohmies', component: <SentOhmies/> },
     { pageName: 'Received Ohmies', component: <ReceivedOhmies/> },
-    { pageName: 'Create an Ohmi', component: <CreateOhmi/>},
+    { pageName: 'Create an Ohmi', component: <CreateOhmi/> },
   ]
 
   return (
@@ -36,7 +36,7 @@ function App () {
             (val, idx) =>
               <Menu.Item key={idx}>{val.pageName}</Menu.Item>)
           }
-        <LoginButton style = {{float: "right", top: "100%", marginTop: 15 }}/> 
+        <LoginButton style = {{float: "right", top: "100%", marginTop: 15 }}/>
         </Menu>
 
       </Header>

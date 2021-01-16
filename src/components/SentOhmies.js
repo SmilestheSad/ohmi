@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import OhmiCard from './OhmiCard'
-import firebase from './firebase.js'
-import { useCollection } from 'react-firebase-hooks/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
+import firebase from 'firebase/app'
+import { useCollection } from 'react-firebase-hooks/firestore'
 
 export default function SentOhmies () {
   const [user] = useAuthState(firebase.auth())
