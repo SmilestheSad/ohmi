@@ -28,7 +28,7 @@ export default function ReceivedOhmies () {
       const receiverPromise = data.receiver.get().then((snapshot) => {
         ohmi.receiver = snapshot.get('name')
       })
-      const senderPromise = data.receiver.get().then((snapshot) => {
+      const senderPromise = data.sender.get().then((snapshot) => {
         ohmi.sender = snapshot.get('name')
       })
       return Promise.all([receiverPromise, senderPromise])
