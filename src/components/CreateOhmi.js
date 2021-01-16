@@ -17,15 +17,15 @@ const tailLayout = {
 }
 
 export default function CreateOhmi () {
-  const [cardSender, setCardSender] = useState('')
-  const [cardReceiver, set] = useState('')
+  const [cardTo, setCardTo] = useState('')
+  const [cardFrom, setCardFrom] = useState('')
   const [cardTitle, setCardTitle] = useState('')
   const [cardDesc, setCardDesc] = useState('')
   const [form] = Form.useForm()
 
   const onFinish = (values) => {
-    setTo(values.cardTo)
-    setFrom(values.cardFrom)
+    setCardTo(values.cardTo)
+    setCardFrom(values.cardFrom)
     setCardTitle(values.cardTitle)
     setCardDesc(values.cardDesc)
     const db = firebase.firestore();
