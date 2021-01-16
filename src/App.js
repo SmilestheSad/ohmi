@@ -6,6 +6,10 @@ import {Layout, Menu} from 'antd'
 import About from './components/About'
 import CreateOhmi from './components/CreateOhmi'
 
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
+
 firebase.initializeApp({
     apiKey: process.env.REACT_APP_API_KEY,
     authDomain: "uomi-6ffa3.firebaseapp.com",
