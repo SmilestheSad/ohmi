@@ -1,7 +1,8 @@
 import './App.less'
 import React, {useState} from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import {Layout, Menu} from 'antd'
+import {Divider, Layout, Menu, Space, Typography} from 'antd'
+import {GithubOutlined} from '@ant-design/icons'
 
 import About from './components/About'
 import CreateOhmi from './components/CreateOhmi'
@@ -54,7 +55,13 @@ function App() {
               {currentTab === "2" ? <Route path="" component={CreateOhmi} /> : null}
             </div>
           </Content>
-          <Footer style={{ textAlign: 'center' }}>Created by Team VAGA</Footer>
+          <Footer style={{ textAlign: 'center' }}>
+              <Space split={<Divider type={'vertical'}/>}>
+                  <Typography.Text>Created with React and Ant Design</Typography.Text>
+                  <Typography.Text>Team VAGA</Typography.Text>
+                  <Typography.Link href={'https://github.com/SmilestheSad/ohmi'} target={'_blank'}><GithubOutlined/></Typography.Link>
+              </Space>
+          </Footer>
         </Layout>
       </Router>
     </div>
