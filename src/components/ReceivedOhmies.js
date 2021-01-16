@@ -8,7 +8,7 @@ export default function ReceivedOhmies () {
   const [user] = useAuthState(firebase.auth())
   const [db] = useCollection(firebase.firestore()
     .collection('ohmies')
-    .where('receiver', '==', user.uid),
+    .where('receiver', '==', user ? user.uid : 'test_user'),
   )
   const [ohmiData, setOhmiData] = useState([])
   useEffect(() => {
