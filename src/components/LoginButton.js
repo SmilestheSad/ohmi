@@ -7,26 +7,38 @@ import { GoogleOutlined } from '@ant-design/icons'
 export default function LoginButton ({style}) {
   const [user, loading] = useAuthState(firebase.auth())
   const [modalVisible, setModalVisible] = useState(false)
+  const db = firebase.firestore()
+
   const showModal = () => {setModalVisible(true)}
   const closeModal = () => {setModalVisible(false)}
+
   const signInWithGoogle = () => {
     firebase.auth()
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
-      .then(() => {
+      .then((result) => {
         setModalVisible(false)
+        db.collection('users')
+          .doc(result.user.uid)
+          .set({
+            name: result.user.displayName,
+            photoURL: result.user.photoURL,
+          })
       })
   }
+
   const logOut = () => {
     console.log('logging out')
     firebase.auth().signOut().then(result => {
       console.log(result)
     }).catch(error => {console.log(error)})
   }
+
   useEffect(
     () => {
       console.log(user)
     }, [user],
   )
+
   return <>
     {user === null ?
       <Button style = {style} onClick={showModal}>Log In</Button> :
