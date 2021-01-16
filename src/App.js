@@ -12,7 +12,6 @@ import OhmiFooter from './components/OhmiFooter'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
-import DatabaseTest from './components/DatabaseTest'
 
 if (!firebase.apps.length) {
   firebase.initializeApp({
