@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import OhmiCard from './OhmiCard'
-import { data } from '../testing'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import firebase from 'firebase/app'
 import { useCollection } from 'react-firebase-hooks/firestore'
@@ -10,19 +9,34 @@ export default function ReceivedOhmies () {
   const [db] = useCollection(firebase.firestore()
     .collection('ohmies')
     .where('receiver', '==',
-      firebase.firestore().collection('users').doc(user.uid)),
+      firebase.firestore()
+        .collection('users')
+        .doc(user ? user.uid : 'test_user')),
   )
+  const [ohmiData, setOhmiData] = useState([])
   useEffect(() => {
     if (db === null || db === undefined) {
       return
     }
-    db.forEach((doc) => {
-      console.log(doc)
-      console.log(doc.data())
-      console.log(doc.data().receiver.id)
+    const newOhmiData = []
+    Promise.all(db.docs.map((doc, idx) => {
+      const ohmi = {}
+      const data = doc.data()
+      ohmi.id = doc.id
+      ohmi.title = data.title
+      ohmi.description = data.description
+      const receiverPromise = data.receiver.get().then((snapshot) => {
+        ohmi.receiver = snapshot.get('name')
+      })
+      const senderPromise = data.receiver.get().then((snapshot) => {
+        ohmi.sender = snapshot.get('name')
+      })
+      return Promise.all([receiverPromise, senderPromise])
+        .then(() => {newOhmiData[idx] = ohmi})
+    })).then(() => {
+      setOhmiData(newOhmiData)
     })
   }, [db])
-  const [ohmiData, setOhmiData] = useState(data)
 
   const handleClick = (id) => () => {
     setOhmiData(ohmiData.filter(ohmi => ohmi.id !== id))
@@ -34,8 +48,9 @@ export default function ReceivedOhmies () {
       <div style={{ display: 'flex' }}>
         {ohmiData.map(ohmi =>
           <OhmiCard
-            to={ohmi.to}
-            from={ohmi.from}
+            key={ohmi.id}
+            to={ohmi.receiver}
+            from={ohmi.sender}
             title={ohmi.title}
             desc={ohmi.desc}
             handleClick={handleClick(ohmi.id)}

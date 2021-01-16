@@ -3,15 +3,15 @@ import { Form, Input, Button } from 'antd'
 import firebase from 'firebase';
 const layout = {
   labelCol: {
-    span: 8,
+    span: 7
   },
   wrapperCol: {
-    span: 16,
+    span: 10,
   },
 }
 const tailLayout = {
   wrapperCol: {
-    offset: 8,
+    offset: 10,
     span: 16,
   },
 }
@@ -30,8 +30,8 @@ export default function CreateOhmi () {
     setCardDesc(values.cardDesc)
     const db = firebase.firestore();
     console.log(
-      `to: ${cardTo} from: ${cardFrom} title: ${cardTitle} desc: ${cardDesc}`);
-    db.collection("ohmies").add({sender: cardTo,receiver: cardFrom, title: cardTitle, description: cardDesc})
+      `to: ${cardSender} from: ${cardReceiver} title: ${cardTitle} desc: ${cardDesc}`);
+    db.collection("ohmies").add({sender: cardSender,receiver: cardReceiver, title: cardTitle, description: cardDesc})
   
     
     
@@ -51,48 +51,32 @@ export default function CreateOhmi () {
 
   return (
     <div>
-      <Form {...layout} form={form} name="control-hooks" onFinish={onFinish}>
+      <Form justify="center" {...layout} form={form} name="control-hooks" onFinish={onFinish}>
         <Form.Item
           name="cardTo"
           label="To"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
+          rules={[{required: true}]}
         >
           <Input/>
         </Form.Item>
         <Form.Item
           name="cardFrom"
           label="From"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
+          rules={[{required: true}]}
         >
           <Input/>
         </Form.Item>
         <Form.Item
           name="cardTitle"
           label="Title"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
+          rules={[{required: true}]}
         >
           <Input/>
         </Form.Item>
         <Form.Item
           name="cardDesc"
           label="Description"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
+          rules={[{required: true}]}
         >
           <Input/>
         </Form.Item>
