@@ -20,14 +20,14 @@ export default function SentOhmies() {
     <div>
       <h1>Sent Ohmies</h1>
       <div style={{ display: 'flex' }}>
-        {db && db.map(ohmi =>
+        {/* {db && db.map(ohmi =>
           <OhmiCard
             to={ohmi.to}
             from={ohmi.from}
             title={ohmi.title}
             desc={ohmi.desc}
           />
-        )}
+        )} */}
       </div>
     </div>
   )
