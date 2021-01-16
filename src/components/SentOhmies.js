@@ -1,9 +1,9 @@
-import {useState} from 'react'
+import { useState } from 'react'
 import OhmiCard from './OhmiCard'
-import {data} from '../testing'
+import { data } from '../testing'
 
 export default function SentOhmies () {
-  const [ohmiData, setOhmiData] = useState(data)
+  const [ohmiData] = useState(data)
 
   return (
     <div>
