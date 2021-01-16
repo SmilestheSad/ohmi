@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Create env file
+        run: |
+          touch .env
+          echo REACT_APP_API_KEY=${{ secrets.FIREBASE_TOKEN }}
       - run: npm ci && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
