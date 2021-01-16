@@ -9,7 +9,9 @@ export default function ReceivedOhmies () {
   const [db] = useCollection(firebase.firestore()
     .collection('ohmies')
     .where('receiver', '==',
-      firebase.firestore().collection('users').doc(user.uid)),
+      firebase.firestore()
+        .collection('users')
+        .doc(user ? user.uid : 'test_user')),
   )
   const [ohmiData, setOhmiData] = useState([])
   useEffect(() => {
@@ -18,9 +20,9 @@ export default function ReceivedOhmies () {
     }
     const newOhmiData = []
     Promise.all(db.docs.map((doc, idx) => {
-      console.log(idx)
       const ohmi = {}
       const data = doc.data()
+      ohmi.id = doc.id
       ohmi.title = data.title
       ohmi.description = data.description
       const receiverPromise = data.receiver.get().then((snapshot) => {
@@ -46,6 +48,7 @@ export default function ReceivedOhmies () {
       <div style={{ display: 'flex' }}>
         {ohmiData.map(ohmi =>
           <OhmiCard
+            key={ohmi.id}
             to={ohmi.receiver}
             from={ohmi.sender}
             title={ohmi.title}
