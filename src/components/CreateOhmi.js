@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { Form, Input, Button } from 'antd'
-import firebase from 'firebase';
+import firebase from 'firebase'
+
 const layout = {
   labelCol: {
-    span: 7
+    span: 7,
   },
   wrapperCol: {
     span: 10,
@@ -17,24 +18,28 @@ const tailLayout = {
 }
 
 export default function CreateOhmi () {
-  const [cardTo, setCardTo] = useState('')
-  const [cardFrom, setCardFrom] = useState('')
+  const [cardReceiver, setCardReceiver] = useState('')
+  const [cardSender, setCardSender] = useState('')
   const [cardTitle, setCardTitle] = useState('')
   const [cardDesc, setCardDesc] = useState('')
   const [form] = Form.useForm()
 
   const onFinish = (values) => {
-    setCardTo(values.cardTo)
-    setCardFrom(values.cardFrom)
+    setCardReceiver(values.cardTo)
+    setCardSender(values.cardFrom)
     setCardTitle(values.cardTitle)
     setCardDesc(values.cardDesc)
-    const db = firebase.firestore();
+    const db = firebase.firestore()
     console.log(
-      `to: ${cardTo} from: ${cardFrom} title: ${cardTitle} desc: ${cardDesc}`);
-    db.collection("ohmies").add({sender: cardSender,receiver: cardReceiver, title: cardTitle, description: cardDesc})
-  
-    
-    
+      `to: ${cardReceiver} from: ${cardSender} title: ${cardTitle} desc: ${cardDesc}`)
+    db.collection('ohmies')
+      .add({
+        sender: cardSender,
+        receiver: cardReceiver,
+        title: cardTitle,
+        description: cardDesc,
+      })
+
     form.resetFields()
   }
 
@@ -51,32 +56,33 @@ export default function CreateOhmi () {
 
   return (
     <div>
-      <Form justify="center" {...layout} form={form} name="control-hooks" onFinish={onFinish}>
+      <Form justify="center" {...layout} form={form} name="control-hooks"
+            onFinish={onFinish}>
         <Form.Item
           name="cardTo"
           label="To"
-          rules={[{required: true}]}
+          rules={[{ required: true }]}
         >
           <Input/>
         </Form.Item>
         <Form.Item
           name="cardFrom"
           label="From"
-          rules={[{required: true}]}
+          rules={[{ required: true }]}
         >
           <Input/>
         </Form.Item>
         <Form.Item
           name="cardTitle"
           label="Title"
-          rules={[{required: true}]}
+          rules={[{ required: true }]}
         >
           <Input/>
         </Form.Item>
         <Form.Item
           name="cardDesc"
           label="Description"
-          rules={[{required: true}]}
+          rules={[{ required: true }]}
         >
           <Input/>
         </Form.Item>
