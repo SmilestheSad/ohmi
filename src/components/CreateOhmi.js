@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Form, Input, Button } from 'antd'
-
+import firebase from 'firebase';
 const layout = {
   labelCol: {
     span: 8,
@@ -28,8 +28,13 @@ export default function CreateOhmi () {
     setFrom(values.cardFrom)
     setCardTitle(values.cardTitle)
     setCardDesc(values.cardDesc)
+    const db = firebase.firestore();
     console.log(
-      `to: ${cardTo} from: ${cardFrom} title: ${cardTitle} desc: ${cardDesc}`)
+      `to: ${cardTo} from: ${cardFrom} title: ${cardTitle} desc: ${cardDesc}`);
+    db.collection("ohmies").add({to: cardTo,from: cardFrom, title: cardTitle, desc: cardDesc})
+  
+    
+    
     form.resetFields()
   }
 

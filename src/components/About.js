@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import LoginButton from './LoginButton'
 import firebase from './firebase'
 
 export default function About () {
@@ -18,7 +17,6 @@ export default function About () {
       {users.map(user => (
         <li key={user.five}>{user.five}</li>
       ))}
-      <LoginButton/>
     </div>
   )
 }

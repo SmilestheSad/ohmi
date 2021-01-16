@@ -4,7 +4,7 @@ import firebase from 'firebase/app'
 import { Button, Modal } from 'antd'
 import { GoogleOutlined } from '@ant-design/icons'
 
-export default function LoginButton () {
+export default function LoginButton ({style}) {
   const [user, loading] = useAuthState(firebase.auth())
   const [modalVisible, setModalVisible] = useState(false)
   const showModal = () => {setModalVisible(true)}
@@ -29,8 +29,8 @@ export default function LoginButton () {
   )
   return <>
     {user === null ?
-      <Button onClick={showModal}>Log In</Button> :
-      <Button onClick={logOut} loading={loading}>Log Out</Button>
+      <Button style = {style} onClick={showModal}>Log In</Button> :
+      <Button style = {style} onClick={logOut} loading={loading}>Log Out</Button>
     }
     <Modal
       visible={modalVisible}
