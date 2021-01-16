@@ -1,7 +1,7 @@
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useState, useEffect } from 'react'
 import firebase from 'firebase/app'
-import { Button, Modal } from 'antd'
+import { Button, Modal, Space } from 'antd'
 import { GoogleOutlined } from '@ant-design/icons'
 
 export default function LoginButton () {
@@ -36,14 +36,17 @@ export default function LoginButton () {
       visible={modalVisible}
       footer={null}
       onCancel={closeModal}
+      style={{ textAlign: 'center' }}
     >
-      <Button
-        loading={loading}
-        icon={<GoogleOutlined/>}
-        onClick={signInWithGoogle}
-      >
-        Sign in with Google
-      </Button>
+      <Space direction={'vertical'}>
+        <Button
+          loading={loading}
+          icon={<GoogleOutlined/>}
+          onClick={signInWithGoogle}
+        >
+          Sign in with Google
+        </Button>
+      </Space>
     </Modal>
   </>
 }
