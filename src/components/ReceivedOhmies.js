@@ -8,10 +8,7 @@ export default function ReceivedOhmies () {
   const [user] = useAuthState(firebase.auth())
   const [db] = useCollection(firebase.firestore()
     .collection('ohmies')
-    .where('receiver', '==',
-      firebase.firestore()
-        .collection('users')
-        .doc(user ? user.uid : 'test_user')),
+    .where('receiver', '==', user.uid),
   )
   const [ohmiData, setOhmiData] = useState([])
   useEffect(() => {
@@ -25,12 +22,20 @@ export default function ReceivedOhmies () {
       ohmi.id = doc.id
       ohmi.title = data.title
       ohmi.description = data.description
-      const receiverPromise = data.receiver.get().then((snapshot) => {
-        ohmi.receiver = snapshot.get('name')
-      })
-      const senderPromise = data.receiver.get().then((snapshot) => {
-        ohmi.sender = snapshot.get('name')
-      })
+      const receiverPromise = firebase.firestore()
+        .collection('users')
+        .doc(data.receiver)
+        .get()
+        .then((snapshot) => {
+          ohmi.receiver = snapshot.get('name')
+        })
+      const senderPromise = firebase.firestore()
+        .collection('users')
+        .doc(data.sender)
+        .get()
+        .then((snapshot) => {
+          ohmi.sender = snapshot.get('name')
+        })
       return Promise.all([receiverPromise, senderPromise])
         .then(() => {newOhmiData[idx] = ohmi})
     })).then(() => {

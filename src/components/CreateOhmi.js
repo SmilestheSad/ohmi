@@ -29,8 +29,8 @@ export default function CreateOhmi () {
       `to: ${values.cardReceiver} from: ${user.uid} title: ${values.cardTitle} desc: ${values.cardDesc}`)
     firebase.firestore().collection('ohmies')
       .add({
-        sender: `users/${user.uid}`,
-        receiver: `users/${values.cardReceiver}`,
+        sender: user.uid,
+        receiver: values.cardReceiver,
         title: values.cardTitle,
         description: values.cardDesc,
       })
