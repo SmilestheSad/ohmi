@@ -8,7 +8,7 @@ export default function SentOhmies () {
   const [user] = useAuthState(firebase.auth())
   const [db] = useCollection(firebase.firestore()
     .collection('ohmies')
-    .where('receiver', '==', user ? user.uid : 'test_user'),
+    .where('sender', '==', user ? user.uid : 'test_user'),
   )
   const [ohmiData, setOhmiData] = useState([])
 
@@ -54,7 +54,7 @@ export default function SentOhmies () {
             to={ohmi.receiver}
             from={ohmi.sender}
             title={ohmi.title}
-            desc={ohmi.desc}
+            desc={ohmi.description}
           />,
         )}
       </div>

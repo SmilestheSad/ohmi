@@ -36,14 +36,14 @@ function App () {
             (val, idx) =>
               <Menu.Item key={idx}>{val.pageName}</Menu.Item>)
           }
-        <LoginButton style = {{float: "right", top: "100%"}}/> 
+        <LoginButton style = {{float: "right", top: "100%"}}/>
         </Menu>
-      
+
       </Header>
       <Content
         style={{ padding: '0 50px', marginTop: 64 }}>
         <div
-          style={{ padding: 24, minHeight: 380 }}>
+          style={{ minHeight: 380 }}>
           {pages[currentTab].component}
         </div>
       </Content>

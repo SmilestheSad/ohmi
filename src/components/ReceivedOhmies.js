@@ -57,7 +57,7 @@ export default function ReceivedOhmies () {
             to={ohmi.receiver}
             from={ohmi.sender}
             title={ohmi.title}
-            desc={ohmi.desc}
+            desc={ohmi.description}
             handleClick={handleClick(ohmi.id)}
           />,
         )}
