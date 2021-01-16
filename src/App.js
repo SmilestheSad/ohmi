@@ -25,7 +25,7 @@ if (!firebase.apps.length) {
   }
 
 
-const { Header, Content, Footer } = Layout;
+const {Header, Content} = Layout;
 
 function App() {
   const [currentTab, setCurrentTab] = useState("1")
