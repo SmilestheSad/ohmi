@@ -1,5 +1,5 @@
 import './App.less'
-import React, { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Layout, Menu } from 'antd'
 
 import About from './components/About'
