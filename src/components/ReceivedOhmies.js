@@ -1,29 +1,15 @@
-import React from 'react'
+import {useState} from 'react'
 import OhmiCard from './OhmiCard'
-
+import {data} from '../testing'
 
 
 export default function ReceivedOhmies() {
-    const ohmiData = [
-        {
-            "to": "John",
-            "from": "Ben",
-            "title": "free car ride",
-            "desc": "thanks for walking my dog"
-        },
-        {
-            "to": "Joe",
-            "from": "Jim",
-            "title": "lunch with yours truly",
-            "desc": "<3"
-        },
-        {
-            "to": "Tim",
-            "from": "Sam",
-            "title": "you, me, tonight",
-            "desc": ";)"
-        }
-    ]
+    const [ohmiData, setOhmiData] = useState(data)
+
+    const handleClick = (id) => () => {
+      setOhmiData(ohmiData.filter(ohmi => ohmi.id !== id))
+    }
+
     return (
         <div>
             <h1>Received Ohmies</h1>
@@ -34,6 +20,7 @@ export default function ReceivedOhmies() {
                     from={ohmi.from}
                     title={ohmi.title}
                     desc={ohmi.desc}
+                    handleClick={handleClick(ohmi.id)}
                 />
             )}
             </div>
