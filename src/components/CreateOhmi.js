@@ -30,7 +30,7 @@ export default function CreateOhmi () {
     setCardDesc(values.cardDesc)
     const db = firebase.firestore();
     console.log(
-      `to: ${cardSender} from: ${cardReceiver} title: ${cardTitle} desc: ${cardDesc}`);
+      `to: ${cardTo} from: ${cardFrom} title: ${cardTitle} desc: ${cardDesc}`);
     db.collection("ohmies").add({sender: cardSender,receiver: cardReceiver, title: cardTitle, description: cardDesc})
   
     
