@@ -1,17 +1,20 @@
 import './App.less'
 import React, {useState} from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route} from 'react-router-dom'
 import {Layout, Menu} from 'antd'
 
 import About from './components/About'
+import SentOhmies from './components/SentOhmies'
+import ReceivedOhmies from './components/ReceivedOhmies'
 import CreateOhmi from './components/CreateOhmi'
+import OhmiFooter from "./components/OhmiFooter";
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
 if (!firebase.apps.length) {
-    firebase.initializeApp({   
+    firebase.initializeApp({
       apiKey: process.env.REACT_APP_API_KEY,
       authDomain: "uomi-6ffa3.firebaseapp.com",
       projectId: "uomi-6ffa3",
@@ -24,7 +27,7 @@ if (!firebase.apps.length) {
   }
 
 
-const { Header, Content, Footer } = Layout;
+const {Header, Content, Footer} = Layout;
 
 function App() {
   const [currentTab, setCurrentTab] = useState("1")
@@ -39,23 +42,22 @@ function App() {
         <Layout>
           <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
             <div className="logo" />
-            <Menu onClick={handleClick}
-            selectedKeys={[currentTab]}
-            theme="dark" mode="horizontal">
-              <Menu.Item key="1">Home<Link to="" /></Menu.Item>
-              <Menu.Item key="2">Sent Ohmies<Link to="SentHomies" /></Menu.Item>
+            <Menu onClick={handleClick} selectedKeys={[currentTab]} theme="dark" mode="horizontal">
+              <Menu.Item key="1">About</Menu.Item>
+              <Menu.Item key="2">Sent Ohmies</Menu.Item>
               <Menu.Item key="3">Received Ohmies</Menu.Item>
-              <Menu.Item key="4">Create an Ohmi<Link to="CreateOhmi" /></Menu.Item>
+              <Menu.Item key="4">Create an Ohmi</Menu.Item>
             </Menu>
           </Header>
           <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
             <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
               {currentTab === "1" ? <Route path="" component={About} /> : null}
-              {currentTab === "2" ? <Route path="" component={CreateOhmi} /> : null}
+              {currentTab === "2" ? <Route path="" component={SentOhmies} /> : null}
+              {currentTab === "3" ? <Route path="" component={ReceivedOhmies} /> : null}
               {currentTab === "4" ? <Route path="" component={CreateOhmi} /> : null}
             </div>
           </Content>
-          <Footer style={{ textAlign: 'center' }}>Created by Team VAGA</Footer>
+          <OhmiFooter/>
         </Layout>
       </Router>
     </div>
