@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 import { Form, Input, Button } from 'antd'
 
-const layout = {
+const layout = { 
   labelCol: {
-    span: 8,
+    span: 7
   },
   wrapperCol: {
-    span: 16,
+    span: 10,
   },
 }
 const tailLayout = {
   wrapperCol: {
-    offset: 8,
+    offset: 10,
     span: 16,
   },
 }
@@ -46,48 +46,32 @@ export default function CreateOhmi () {
 
   return (
     <div>
-      <Form {...layout} form={form} name="control-hooks" onFinish={onFinish}>
+      <Form justify="center" {...layout} form={form} name="control-hooks" onFinish={onFinish}>
         <Form.Item
           name="cardTo"
           label="To"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
+          rules={[{required: true}]}
         >
           <Input/>
         </Form.Item>
         <Form.Item
           name="cardFrom"
           label="From"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
+          rules={[{required: true}]}
         >
           <Input/>
         </Form.Item>
         <Form.Item
           name="cardTitle"
           label="Title"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
+          rules={[{required: true}]}
         >
           <Input/>
         </Form.Item>
         <Form.Item
           name="cardDesc"
           label="Description"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
+          rules={[{required: true}]}
         >
           <Input/>
         </Form.Item>
