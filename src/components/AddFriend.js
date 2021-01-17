@@ -26,10 +26,11 @@ export default function AddFriend () {
   return (
     <>
       <Input placeholder="Friend Code" value={friendCodes}
-             onChange={(e) => setFriendCodes(e.target.value)}/>
-      <Button icon={<UserAddOutlined/>} onClick={onFriendCodeAdd}
-              loading={submittingCode}> Add
-        Friend </ Button>
+             onChange={(e) => setFriendCodes(e.target.value)}
+             suffix={<Button icon={<UserAddOutlined/>} onClick={onFriendCodeAdd}
+                             loading={submittingCode}/>}
+      />
+
 
     </>
   )

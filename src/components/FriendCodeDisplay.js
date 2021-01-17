@@ -3,6 +3,7 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { LoadingOutlined } from '@ant-design/icons'
 import { Button, Drawer, Typography } from 'antd'
 import { useState, useEffect } from 'react'
+import AddFriend from './AddFriend'
 
 export default function FriendCodeDisplay () {
   const [visible, setVisible] = useState(false)
@@ -47,6 +48,7 @@ export default function FriendCodeDisplay () {
         footer={friendCodeComponent}
         footerStyle={{ textAlign: 'center' }}
       >
+        <AddFriend/>
         <p>map through array of friends</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
