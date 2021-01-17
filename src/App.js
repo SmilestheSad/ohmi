@@ -27,9 +27,9 @@ function App () {
 
   const pages = [
     { pageName: 'About', component: <About/> },
-    { pageName: 'Sent Ohmies', component: <SentOhmies/> },
-    { pageName: 'Received Ohmies', component: <ReceivedOhmies/> },
-    { pageName: 'Create an Ohmi', component: <CreateOhmi/> },
+    { pageName: 'Sent ohmies', component: <SentOhmies/> },
+    { pageName: 'Received ohmies', component: <ReceivedOhmies/> },
+    { pageName: 'Create an ohmi', component: <CreateOhmi/> },
   ]
 
   const receivedIndex = pages.findIndex(
