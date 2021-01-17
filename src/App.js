@@ -1,7 +1,6 @@
 import './App.less'
 import { useState } from 'react'
-import { Avatar, Layout, Menu, Space } from 'antd'
-import { UserOutlined } from '@ant-design/icons'
+import { Layout, Menu, Space } from 'antd'
 
 import About from './components/About'
 import LoginButton from './components/LoginButton'
@@ -12,6 +11,7 @@ import OhmiFooter from './components/OhmiFooter'
 import FriendCodeDisplay from './components/FriendCodeDisplay'
 import OhmiesListener from './components/ReceivedOhmiesListener'
 import OhmiParticleBg from './components/OhmiParticleBg'
+import OhmiAvatar from './components/OhmiAvatar'
 
 const { Header, Content } = Layout
 
@@ -47,7 +47,7 @@ function App () {
             }
             <Space style={{ float: 'right' }}>
               <FriendCodeDisplay/>
-              <Avatar style={{ alignSelf: 'center' }} icon={<UserOutlined/>}/>
+              <OhmiAvatar/>
               <LoginButton style={{ alignSelf: 'center' }}/>
             </Space>
           </Menu>
