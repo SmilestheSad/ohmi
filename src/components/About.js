@@ -7,7 +7,7 @@ export default function About () {
     const fetchData = async () => {
       const db = firebase.firestore()
       const data = await db.collection('users').get()
-      setUsers(data.docs.map(doc => doc.data()))
+      setUsers(data.docs.map(doc => ({ id: doc.id, data: doc.data() })))
     }
     fetchData()
   }, [])
@@ -15,7 +15,7 @@ export default function About () {
     <div>
       <h1>explanation here about what ohmi is</h1>
       {users.map(user => (
-        <li key={user.uid}>{user.name}</li>
+        <li key={user.id}>{user.data.name}</li>
       ))}
     </div>
   )
