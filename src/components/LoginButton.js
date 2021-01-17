@@ -3,26 +3,41 @@ import { useState, useEffect } from 'react'
 import firebase from 'firebase/app'
 import { Button, Modal, Space } from 'antd'
 import { GoogleOutlined } from '@ant-design/icons'
-
-export default function LoginButton ({style}) {
+import {sample} from 'lodash'
+export default function LoginButton({ style }) {
   const [user, loading] = useAuthState(firebase.auth())
   const [modalVisible, setModalVisible] = useState(false)
   const db = firebase.firestore()
 
-  const showModal = () => {setModalVisible(true)}
-  const closeModal = () => {setModalVisible(false)}
+  const showModal = () => { setModalVisible(true) }
+  const closeModal = () => { setModalVisible(false) }
+
+  const createFriendCode = (length, chars) => {
+    var result = '';
+    for (var i = length; i > 0; --i) result += sample(chars);
+    return result;
+  }
 
   const signInWithGoogle = () => {
     firebase.auth()
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then((result) => {
         setModalVisible(false)
-        db.collection('users')
-          .doc(result.user.uid)
-          .set({
-            name: result.user.displayName,
-            photoURL: result.user.photoURL,
-          })
+        const setFriend = async () => {
+          const user = await (db.collection('users').doc(result.user.uid)).get()
+          if (user.exists) {
+            console.log('exists!')
+          } else {
+            db.collection('users')
+              .doc(result.user.uid)
+              .set({
+                name: result.user.displayName,
+                photoURL: result.user.photoURL,
+                friendcode: createFriendCode(8, "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890")
+              })
+          }
+        }
+        setFriend();
       })
   }
 
@@ -30,7 +45,7 @@ export default function LoginButton ({style}) {
     console.log('logging out')
     firebase.auth().signOut().then(result => {
       console.log(result)
-    }).catch(error => {console.log(error)})
+    }).catch(error => { console.log(error) })
   }
 
   useEffect(
@@ -41,8 +56,8 @@ export default function LoginButton ({style}) {
 
   return <>
     {user === null ?
-      <Button style = {style} onClick={showModal}>Log In</Button> :
-      <Button style = {style} onClick={logOut} loading={loading}>Log Out</Button>
+      <Button style={style} onClick={showModal}>Log In</Button> :
+      <Button style={style} onClick={logOut} loading={loading}>Log Out</Button>
     }
     <Modal
       visible={modalVisible}
@@ -53,7 +68,7 @@ export default function LoginButton ({style}) {
       <Space direction={'vertical'}>
         <Button
           loading={loading}
-          icon={<GoogleOutlined/>}
+          icon={<GoogleOutlined />}
           onClick={signInWithGoogle}
         >
           Sign in with Google
