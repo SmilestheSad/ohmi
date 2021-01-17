@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Form, Input, Button, Select } from 'antd'
 import firebase from 'firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
+import { useCollection } from 'react-firebase-hooks/firestore'
 
 const { Option } = Select
 const { TextArea } = Input
@@ -23,18 +24,33 @@ const tailLayout = {
 
 export default function CreateOhmi () {
   const [user] = useAuthState(firebase.auth())
+  const [userDoc] = useCollection(firebase.firestore()
+    .collection('users')
+    .doc(user ? user.uid : 'test_user'))
+  const [friendCodes, setFriendCodes] = useState(['invalid'])
+  const [friendsDB] = useCollection(firebase.firestore()
+    .collection('users')
+    .where('friendCode', 'in', friendCodes),
+  )
+
   const [form] = Form.useForm()
 
   const [users, setUsers] = useState([])
 
   useEffect(() => {
-    const fetchData = async () => {
-      const db = firebase.firestore()
-      const data = await db.collection('users').get()
-      setUsers(data.docs.map(doc => ({ id: doc.id, data: doc.data() })))
+      if (userDoc === null || userDoc === undefined) {
+        return
+      }
+      setFriendCodes(userDoc.data().friends)
     }
-    fetchData()
-  }, [])
+    , [userDoc])
+
+  useEffect(() => {
+    if (friendsDB === null || friendsDB === undefined) {
+      return
+    }
+    setUsers(friendsDB.docs.map(doc => ({ id: doc.id, data: doc.data() })))
+  }, [friendsDB])
 
   const onFinish = (values) => {
     if (user) {
