@@ -54,7 +54,7 @@ export default function ReceivedOhmies () {
 
   return (
     <div>
-      <h1>Received Ohmies</h1>
+      <h1>Received ohmies</h1>
       {user ?
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {ohmiData.map(ohmi =>
