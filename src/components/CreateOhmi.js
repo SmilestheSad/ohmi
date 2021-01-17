@@ -35,7 +35,7 @@ export default function CreateOhmi () {
 
   const [form] = Form.useForm()
 
-  const [users, setUsers] = useState([])
+  const [friends, setFriends] = useState([])
 
   useEffect(() => {
       if (userDoc === null || userDoc === undefined) {
@@ -49,7 +49,7 @@ export default function CreateOhmi () {
     if (friendsDB === null || friendsDB === undefined) {
       return
     }
-    setUsers(friendsDB.docs.map(doc => ({ id: doc.id, data: doc.data() })))
+    setFriends(friendsDB.docs.map(doc => ({ id: doc.id, data: doc.data() })))
   }, [friendsDB])
 
   const onFinish = (values) => {
@@ -97,7 +97,7 @@ export default function CreateOhmi () {
                   .includes(input.toLowerCase())
               }}
             >
-              {users.map(user => (
+              {friends.map(user => (
                 <Option key={user.id} value={user.id}>{user.data.name}</Option>
               ))}
             </Select>
