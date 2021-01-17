@@ -28,16 +28,16 @@ export default function FriendDrawer () {
   if (loading) {
     friendCodeComponent = <LoadingOutlined spin={true}/>
   } else if (user) {
-    friendCodeComponent = <Typography.Title level={5}
-                                            style={{}}>Friend
+    friendCodeComponent = <Typography.Title level={5}>Friend
       Code: {friendCode}</Typography.Title>
   } else {
     friendCodeComponent = <></>
   }
 
   return (
+    user &&
     <>
-      <Button type='primary' onClick={() => setVisible(true)}>
+      <Button loading={loading} onClick={() => setVisible(true)}>
         Friend List
       </Button>
       <Drawer
