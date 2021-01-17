@@ -70,7 +70,7 @@ export default function ReceivedOhmies () {
           />,
         )}
       </div>
-      : <h2 style={{ textAlign: 'center' }}>Please log in first to see received Ohmies!</h2>}
+      : <h2 style={{ textAlign: 'center' }}>Please log in first to see received ohmies!</h2>}
     </div>
   )
 }

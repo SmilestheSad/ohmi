@@ -12,7 +12,7 @@ export default function AddFriend () {
   const onFriendCodeAdd = async () => {
     if (!user) {
       Modal.error({ content: 'Please log in first!' })
-      return //todo: add user message
+      return
     }
     if (!friendCodes) {
       message.error('Please enter a friend code!')

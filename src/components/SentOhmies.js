@@ -62,7 +62,7 @@ export default function SentOhmies () {
           />,
         )}
       </div>
-      : <h2 style={{ textAlign: 'center' }}>Please log in first to see sent Ohmies!</h2>}
+      : <h2 style={{ textAlign: 'center' }}>Please log in first to see sent ohmies!</h2>}
     </div>
   )
 }
