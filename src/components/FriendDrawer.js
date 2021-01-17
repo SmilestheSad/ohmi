@@ -21,6 +21,7 @@ export default function FriendDrawer () {
         onClose={() => setVisible(false)}
         visible={visible}
         footer= {<FriendCode/>}
+        width={'max(25vw,256px)'}
         footerStyle={{ textAlign: 'center' }}
       >
         <AddFriend/>
