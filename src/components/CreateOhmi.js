@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Form, Input, Button, Select } from 'antd'
 import firebase from 'firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
+
 const { Option } = Select
 const { TextArea } = Input
 
@@ -58,55 +59,57 @@ export default function CreateOhmi () {
     form.resetFields()
   }
 
-  return (
-    <div style={{ padding: '30px' }}>
-      <h2 style={{ textAlign: 'center' }}>{user
-        ? 'Create an Ohmi'
-        : 'Please log in first to send an Ohmi!'}</h2>
-      <br/>
-      <Form justify='center' {...layout} form={form} name='control-hooks'
-            onFinish={onFinish}>
-        <Form.Item
-          name='cardReceiver'
-          label='To'
-          rules={[{ required: true }]}
-        >
-          <Select
-            showSearch
-            style={{ width: 200 }}
-            placeholder='Select a user to send an Ohmi to'
-            filterOption={(input, option) => {
-              return option.children.toLowerCase().includes(input.toLowerCase())
-            }}
+  return (<>
+      <div style={{ padding: '30px' }}>
+        <h2 style={{ textAlign: 'center' }}>{user
+          ? 'Create an Ohmi'
+          : 'Please log in first to send an Ohmi!'}</h2>
+        <br/>
+        <Form justify='center' {...layout} form={form} name='control-hooks'
+              onFinish={onFinish}>
+          <Form.Item
+            name='cardReceiver'
+            label='To'
+            rules={[{ required: true }]}
           >
-            {users.map(user => (
-              <Option key={user.id} value={user.id}>{user.data.name}</Option>
-            ))}
-          </Select>
-        </Form.Item>
-        <Form.Item
-          name='cardTitle'
-          label='Title'
-          rules={[{ required: true }]}
-        >
-          <Input/>
-        </Form.Item>
-        <Form.Item
-          name='cardDesc'
-          label='Description'
-          rules={[{ required: true }]}
-        >
-          <TextArea rows={4}/>
-        </Form.Item>
-        <Form.Item {...tailLayout}>
-          <Button type='primary' htmlType='submit'>
-            Submit
-          </Button>
-          <Button htmlType='button' onClick={onReset}>
-            Reset
-          </Button>
-        </Form.Item>
-      </Form>
-    </div>
+            <Select
+              showSearch
+              style={{ width: 200 }}
+              placeholder='Select a user to send an Ohmi to'
+              filterOption={(input, option) => {
+                return option.children.toLowerCase()
+                  .includes(input.toLowerCase())
+              }}
+            >
+              {users.map(user => (
+                <Option key={user.id} value={user.id}>{user.data.name}</Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item
+            name='cardTitle'
+            label='Title'
+            rules={[{ required: true }]}
+          >
+            <Input/>
+          </Form.Item>
+          <Form.Item
+            name='cardDesc'
+            label='Description'
+            rules={[{ required: true }]}
+          >
+            <TextArea rows={4}/>
+          </Form.Item>
+          <Form.Item {...tailLayout}>
+            <Button type='primary' htmlType='submit'>
+              Submit
+            </Button>
+            <Button htmlType='button' onClick={onReset}>
+              Reset
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
+    </>
   )
 };

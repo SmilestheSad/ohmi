@@ -11,6 +11,7 @@ import CreateOhmi from './components/CreateOhmi'
 import OhmiFooter from './components/OhmiFooter'
 import FriendCodeDisplay from './components/FriendCodeDisplay'
 import OhmiesListener from './components/ReceivedOhmiesListener'
+import OhmiParticleBg from './components/OhmiParticleBg'
 
 const { Header, Content } = Layout
 
@@ -32,33 +33,36 @@ function App () {
   ]
 
   return (
-    <Layout>
-      <Header>
-        <div className='logo'/>
-        <Menu onClick={changeTab}
-              selectedKeys={[currentTab]}
-              theme='dark' mode='horizontal'
-        >
-          {pages.map(
-            (val, idx) =>
-              <Menu.Item key={idx}>{val.pageName}</Menu.Item>)
-          }
-          <Space style={{ float: 'right' }}>
-            <FriendCodeDisplay/>
-            <Avatar style={{ alignSelf: 'center' }} icon={<UserOutlined/>}/>
-            <LoginButton style={{ alignSelf: 'center' }}/>
-          </Space>
-        </Menu>
-      </Header>
-      <Content style={{ padding: '0 50px', marginTop: '30px' }}>
-        <div
-          style={{ minHeight: '75vh' }}>
-          {pages[currentTab].component}
-        </div>
-      </Content>
-      <OhmiFooter/>
-      <OhmiesListener/>
-    </Layout>
+    <>
+      <Layout>
+        <Header>
+          <div className='logo'/>
+          <Menu onClick={changeTab}
+                selectedKeys={[currentTab]}
+                theme='dark' mode='horizontal'
+          >
+            {pages.map(
+              (val, idx) =>
+                <Menu.Item key={idx}>{val.pageName}</Menu.Item>)
+            }
+            <Space style={{ float: 'right' }}>
+              <FriendCodeDisplay/>
+              <Avatar style={{ alignSelf: 'center' }} icon={<UserOutlined/>}/>
+              <LoginButton style={{ alignSelf: 'center' }}/>
+            </Space>
+          </Menu>
+        </Header>
+        <Content style={{ padding: '0 50px', marginTop: '30px' }}>
+          <div
+            style={{ minHeight: '75vh' }}>
+            {pages[currentTab].component}
+          </div>
+        </Content>
+        <OhmiFooter/>
+        <OhmiesListener/>
+      </Layout>
+      <OhmiParticleBg/>
+    </>
   )
 }
 
