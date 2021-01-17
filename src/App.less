@@ -7,7 +7,16 @@
 @divider-color: @ohmi-blue;
 @layout-body-background: transparent;
 
-.vert-move {
+
+html {
+    scroll-behavior: smooth;
+  }
+  
+a{
+    display: block;
+    overflow: hidden;
+}
+.vert-move{
     -webkit-animation: mover 1s infinite  alternate;
     animation: mover 1s infinite  alternate;
     display: block;
@@ -20,4 +29,8 @@
   @keyframes mover {
     0% { transform: translateY(0); }
     100% { transform: translateY(-10px); }
+  }
+
+  #tutorial{
+      padding-top: calc(5em + 20px);
   }
