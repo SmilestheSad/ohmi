@@ -8,7 +8,7 @@ import SentOhmies from './components/SentOhmies'
 import ReceivedOhmies from './components/ReceivedOhmies'
 import CreateOhmi from './components/CreateOhmi'
 import OhmiFooter from './components/OhmiFooter'
-import FriendCodeDisplay from './components/FriendCodeDisplay'
+import FriendDrawer from './components/FriendDrawer'
 import OhmiesListener from './components/ReceivedOhmiesListener'
 import OhmiParticleBg from './components/OhmiParticleBg'
 import OhmiAvatar from './components/OhmiAvatar'
@@ -50,7 +50,7 @@ function App () {
                 <Menu.Item key={idx}>{val.pageName}</Menu.Item>)
             }
             <Space style={{ float: 'right' }}>
-              <FriendCodeDisplay/>
+              <FriendDrawer/>
               <OhmiAvatar/>
               <LoginButton style={{ alignSelf: 'center' }}/>
             </Space>

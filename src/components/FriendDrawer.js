@@ -5,7 +5,7 @@ import { Button, Drawer, Typography } from 'antd'
 import { useState, useEffect } from 'react'
 import AddFriend from './AddFriend'
 
-export default function FriendCodeDisplay () {
+export default function FriendDrawer () {
   const [visible, setVisible] = useState(false)
   const [user, loading] = useAuthState(firebase.auth())
   const [friendCode, setFriendCode] = useState(null)
@@ -49,9 +49,6 @@ export default function FriendCodeDisplay () {
         footerStyle={{ textAlign: 'center' }}
       >
         <AddFriend/>
-        <p>map through array of friends</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
       </Drawer>
     </>
   )
