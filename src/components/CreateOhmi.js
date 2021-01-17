@@ -70,8 +70,7 @@ export default function CreateOhmi () {
             style={{ width: 200 }}
             placeholder="Select a user to send an Ohmi to"
             filterOption={(input, option) => {
-              return option.children.toLowerCase()
-                .indexOf(input.toLowerCase()) >= 0
+              return option.children.toLowerCase().includes(input.toLowerCase())
             }}
           >
             {users.map(user => (
