@@ -82,7 +82,7 @@ export default function CreateOhmi () {
       <div style={{ padding: '30px' }}>
         <h2 style={{ textAlign: 'center' }}>{user
           ? 'Create an ohmi'
-          : 'Please log in first to send an Ohmi!'}</h2>
+          : 'Please log in first to send an ohmi!'}</h2>
         <br/>
         <Form justify='center' {...layout} form={form} name='control-hooks'
               onFinish={onFinish}>
