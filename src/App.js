@@ -1,6 +1,6 @@
 import './App.less'
 import { useState } from 'react'
-import { Avatar, Layout, Menu, Space} from 'antd'
+import { Avatar, Layout, Menu, Space } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 
 import About from './components/About'
@@ -17,6 +17,9 @@ function App () {
   const [currentTab, setCurrentTab] = useState('0')
 
   const changeTab = ({ key }) => {
+    if (!key || key >= pages.length) {
+      return
+    }
     setCurrentTab(key)
   }
 
@@ -29,23 +32,24 @@ function App () {
 
   return (
     <Layout>
-      <Header style={{display:'flex'}}>
+      <Header>
         <div className='logo'/>
         <Menu onClick={changeTab}
               selectedKeys={[currentTab]}
-              theme='dark' mode='horizontal'>
+              theme='dark' mode='horizontal'
+        >
           {pages.map(
             (val, idx) =>
               <Menu.Item key={idx}>{val.pageName}</Menu.Item>)
           }
+          <Space style={{ float: 'right' }}>
+            <FriendCodeDisplay/>
+            <Avatar style={{ alignSelf: 'center' }} icon={<UserOutlined/>}/>
+            <LoginButton style={{ alignSelf: 'center' }}/>
+          </Space>
         </Menu>
-        <Space style={{ marginLeft: 'auto' }}>
-          <FriendCodeDisplay/>
-          <Avatar style = {{alignSelf:'center'}} icon={<UserOutlined />} />
-          <LoginButton style={{ alignSelf: 'center' }}/>
-        </Space>
       </Header>
-      <Content style={{ padding: '0 50px', marginTop:'30px' }}>
+      <Content style={{ padding: '0 50px', marginTop: '30px' }}>
         <div
           style={{ minHeight: '75vh' }}>
           {pages[currentTab].component}
