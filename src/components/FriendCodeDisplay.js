@@ -25,7 +25,11 @@ export default function FriendCodeDisplay () {
     component = <LoadingOutlined spin={true}/>
   } else if (user) {
     component = <Typography.Title level={5}
-      style={{ margin: '0px' ,  alignSelf: 'center'}}>Friend Code: {friendCode}</Typography.Title>
+                                  style={{
+                                    margin: '0px',
+                                    alignSelf: 'center',
+                                  }}>Friend
+      Code: {friendCode}</Typography.Title>
   } else {
     component = <></>
   }

@@ -10,6 +10,7 @@ import ReceivedOhmies from './components/ReceivedOhmies'
 import CreateOhmi from './components/CreateOhmi'
 import OhmiFooter from './components/OhmiFooter'
 import FriendCodeDisplay from './components/FriendCodeDisplay'
+import OhmiesListener from './components/ReceivedOhmiesListener'
 
 const { Header, Content } = Layout
 
@@ -56,6 +57,7 @@ function App () {
         </div>
       </Content>
       <OhmiFooter/>
+      <OhmiesListener/>
     </Layout>
   )
 }

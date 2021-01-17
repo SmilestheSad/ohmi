@@ -46,9 +46,11 @@ export default function CreateOhmi () {
           receiver: values.cardReceiver,
           title: values.cardTitle,
           description: values.cardDesc,
+          timeStamp: firebase.firestore.FieldValue.serverTimestamp(),
         })
     } else {
-      alert('Wow. Nothing Happened. I wonder why. Maybe you should log in first.')
+      alert(
+        'Wow. Nothing Happened. I wonder why. Maybe you should log in first.')
     }
     form.resetFields()
   }
@@ -58,8 +60,10 @@ export default function CreateOhmi () {
   }
 
   return (
-    <div style={{padding: '30px'}}>
-      <h2 style={{textAlign: 'center'}}>{user ? 'Create an Ohmi' : 'Please log in first to send an Ohmi!'}</h2>
+    <div style={{ padding: '30px' }}>
+      <h2 style={{ textAlign: 'center' }}>{user
+        ? 'Create an Ohmi'
+        : 'Please log in first to send an Ohmi!'}</h2>
       <br/>
       <Form justify='center' {...layout} form={form} name='control-hooks'
             onFinish={onFinish}>
@@ -93,7 +97,7 @@ export default function CreateOhmi () {
           label='Description'
           rules={[{ required: true }]}
         >
-          <TextArea rows={4} />
+          <TextArea rows={4}/>
         </Form.Item>
         <Form.Item {...tailLayout}>
           <Button type='primary' htmlType='submit'>
