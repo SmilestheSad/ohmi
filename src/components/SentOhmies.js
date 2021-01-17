@@ -47,7 +47,7 @@ export default function SentOhmies () {
   return (
     <div>
       <h1>Sent Ohmies</h1>
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {ohmiData.map(ohmi =>
           <OhmiCard
             key={ohmi.id}
