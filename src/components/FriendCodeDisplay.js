@@ -4,8 +4,8 @@ import { LoadingOutlined } from '@ant-design/icons'
 import { Button, Drawer, Typography } from 'antd'
 import { useState, useEffect } from 'react'
 
-export default function FriendCodeDisplay() {
-  const [visible, setVisible] = useState(false);
+export default function FriendCodeDisplay () {
+  const [visible, setVisible] = useState(false)
   const [user, loading] = useAuthState(firebase.auth())
   const [friendCode, setFriendCode] = useState(null)
 
@@ -23,18 +23,15 @@ export default function FriendCodeDisplay() {
       })
   }, [user])
 
-  let component
+  let friendCodeComponent
   if (loading) {
-    component = <LoadingOutlined spin={true} />
+    friendCodeComponent = <LoadingOutlined spin={true}/>
   } else if (user) {
-    component = <Typography.Title level={5}
-      style={{
-        margin: '0px',
-        alignSelf: 'center',
-      }}>Friend
+    friendCodeComponent = <Typography.Title level={5}
+                                            style={{}}>Friend
       Code: {friendCode}</Typography.Title>
   } else {
-    component = <></>
+    friendCodeComponent = <></>
   }
 
   return (
@@ -47,14 +44,13 @@ export default function FriendCodeDisplay() {
         placement='right'
         onClose={() => setVisible(false)}
         visible={visible}
+        footer={friendCodeComponent}
+        footerStyle={{ textAlign: 'center' }}
       >
         <p>map through array of friends</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
-        <div style={{position: 'absolute', bottom: 20}}>
-        {component}
-        </div>
       </Drawer>
     </>
-  );
+  )
 }
