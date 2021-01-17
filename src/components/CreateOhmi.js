@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Input, Button, Select } from 'antd'
 import firebase from 'firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
@@ -36,19 +36,19 @@ export default function CreateOhmi () {
   }, [])
 
   const onFinish = (values) => {
-    if (!user) {
-      return
+    if (user) {
+      console.log(
+        `to: ${values.cardReceiver} from: ${user.uid} title: ${values.cardTitle} desc: ${values.cardDesc}`)
+      firebase.firestore().collection('ohmies')
+        .add({
+          sender: user.uid,
+          receiver: values.cardReceiver,
+          title: values.cardTitle,
+          description: values.cardDesc,
+        })
+    } else {
+      alert("Wow. Nothing Happened. I wonder why. Maybe you should log in first.")
     }
-    console.log(
-      `to: ${values.cardReceiver} from: ${user.uid} title: ${values.cardTitle} desc: ${values.cardDesc}`)
-    firebase.firestore().collection('ohmies')
-      .add({
-        sender: user.uid,
-        receiver: values.cardReceiver,
-        title: values.cardTitle,
-        description: values.cardDesc,
-      })
-
     form.resetFields()
   }
 
@@ -58,6 +58,7 @@ export default function CreateOhmi () {
 
   return (
     <div>
+      {!user && <h2>Please log in first to send an Ohmi!</h2>}
       <Form justify="center" {...layout} form={form} name="control-hooks"
             onFinish={onFinish}>
         <Form.Item
