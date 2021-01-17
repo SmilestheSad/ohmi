@@ -29,6 +29,7 @@ export default function OhmiesListener (props) {
           })
       }
     })
-  }, [db, now])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [db])
   return null
 }

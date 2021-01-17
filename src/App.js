@@ -32,6 +32,10 @@ function App () {
     { pageName: 'Create an Ohmi', component: <CreateOhmi/> },
   ]
 
+  const receivedIndex = pages.findIndex(
+    ({ component }) => component.type === ReceivedOhmies)
+  const changeToReceivedOhmies = () => setCurrentTab(receivedIndex)
+
   return (
     <>
       <Layout>
@@ -59,8 +63,7 @@ function App () {
           </div>
         </Content>
         <OhmiFooter/>
-        <OhmiesListener onMessageClicked={() => setCurrentTab(pages.findIndex(
-          ({ component }) => component.type === ReceivedOhmies))}/>
+        <OhmiesListener onMessageClicked={changeToReceivedOhmies}/>
       </Layout>
       <OhmiParticleBg/>
     </>
