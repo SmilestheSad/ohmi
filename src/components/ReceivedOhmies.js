@@ -44,7 +44,11 @@ export default function ReceivedOhmies () {
   }, [db])
 
   const handleClick = (id) => () => {
-    setOhmiData(ohmiData.filter(ohmi => ohmi.id !== id))
+    firebase.firestore().collection('ohmies').doc(id).delete().then(function() {
+        console.log("Document successfully deleted!");
+    }).catch(function(error) {
+        console.error("Error removing document: ", error);
+    });
   }
 
   return (
