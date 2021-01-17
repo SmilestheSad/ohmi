@@ -1,15 +1,17 @@
-import firebase from 'firebase/app'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { LoadingOutlined } from '@ant-design/icons'
-import { Button, Drawer, Typography } from 'antd'
-import { useState, useEffect } from 'react'
+
+import { Button, Drawer,} from 'antd'
+import { useState } from 'react'
 import AddFriend from './AddFriend'
 import FriendCode from './FriendCode'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import firebase from 'firebase'
 export default function FriendDrawer () {
   const [visible, setVisible] = useState(false)
+  const [user, loading] = useAuthState(firebase.auth())
   return (
+    user &&
     <>
-      <Button type='primary' onClick={() => setVisible(true)}>
+      <Button loading={loading} onClick={() => setVisible(true)}>
         Friend List
       </Button>
       <Drawer
@@ -25,3 +27,4 @@ export default function FriendDrawer () {
     </>
   )
 }
+
