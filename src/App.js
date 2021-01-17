@@ -1,6 +1,6 @@
 import './App.less'
 import { useState } from 'react'
-import { Layout, Menu } from 'antd'
+import { Layout, Menu, Space } from 'antd'
 
 import About from './components/About'
 import LoginButton from './components/LoginButton'
@@ -8,6 +8,7 @@ import SentOhmies from './components/SentOhmies'
 import ReceivedOhmies from './components/ReceivedOhmies'
 import CreateOhmi from './components/CreateOhmi'
 import OhmiFooter from './components/OhmiFooter'
+import FriendCodeDisplay from './components/FriendCodeDisplay'
 
 const { Header, Content } = Layout
 
@@ -27,7 +28,7 @@ function App () {
 
   return (
     <Layout>
-      <Header style={{display:'flex'}}>
+      <Header style={{ display: 'flex' }}>
         <div className="logo"/>
         <Menu onClick={changeTab}
               selectedKeys={[currentTab]}
@@ -37,7 +38,10 @@ function App () {
               <Menu.Item key={idx}>{val.pageName}</Menu.Item>)
           }
         </Menu>
-        <LoginButton style = {{alignSelf:'center', marginLeft:'auto'}}/>
+        <Space style={{ marginLeft: 'auto' }}>
+          <FriendCodeDisplay/>
+          <LoginButton style={{ alignSelf: 'center' }}/>
+        </Space>
       </Header>
       <Content
         style={{ padding: '0 50px', marginTop: 20 }}>
