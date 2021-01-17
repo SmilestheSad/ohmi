@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Form, Input, Button, Select } from 'antd'
 import firebase from 'firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
-
 const { Option } = Select
 
 const layout = {
