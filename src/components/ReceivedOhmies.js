@@ -35,6 +35,7 @@ export default function ReceivedOhmies () {
         .get()
         .then((snapshot) => {
           ohmi.sender = snapshot.get('name')
+          ohmi.senderPhoto=snapshot.get('photoURL')
         })
       return Promise.all([receiverPromise, senderPromise])
         .then(() => {newOhmiData[idx] = ohmi})
@@ -58,10 +59,11 @@ export default function ReceivedOhmies () {
         {ohmiData.map(ohmi =>
           <OhmiCard
             key={ohmi.id}
-            to={ohmi.receiver}
-            from={ohmi.sender}
+            receiver={ohmi.receiver}
+            sender={ohmi.sender}
+            photo={ohmi.senderPhoto}
             title={ohmi.title}
-            desc={ohmi.description}
+            description={ohmi.description}
             handleClick={handleClick(ohmi.id)}
           />,
         )}

@@ -1,15 +1,25 @@
-import {Card, Button} from 'antd';
+import { Card, Button, Avatar } from 'antd'
 
+const { Meta } = Card
 
+export default function OhmiCard (props) {
 
-export default function OhmiCard(props) {
-    
-    return (
-        <Card title={props.title} bordered={true} hoverable={true} style={{width: 300, margin: 10}}>
-            <p>To: {props.to}</p>
-            <p>From: {props.from}</p>
-            <p>Description: {props.desc}</p>
-            {props.handleClick && <Button onClick = {props.handleClick}>Claim</Button>}
-        </Card>
-    )
+  return (
+    <Card bordered={true} hoverable={true} style={{ width: 300, margin: 10 }}
+          actions={props.handleClick &&
+          [
+            <Button onClick={props.handleClick}>Claim</Button>,
+          ]}
+    >
+      <Meta
+        avatar={
+          <Avatar
+            src={props.photo ??
+            'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'}/>
+        }
+        title={props.title}
+        description={props.description}
+      />
+    </Card>
+  )
 }

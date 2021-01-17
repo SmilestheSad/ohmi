@@ -29,6 +29,7 @@ export default function SentOhmies () {
         .get()
         .then((snapshot) => {
           ohmi.receiver = snapshot.get('name')
+          ohmi.receiverPhoto=snapshot.get('photoURL')
         })
       const senderPromise = firebase.firestore()
         .collection('users')
@@ -51,10 +52,11 @@ export default function SentOhmies () {
         {ohmiData.map(ohmi =>
           <OhmiCard
             key={ohmi.id}
-            to={ohmi.receiver}
-            from={ohmi.sender}
+            receiver={ohmi.receiver}
+            sender={ohmi.sender}
+            photo={ohmi.receiverPhoto}
             title={ohmi.title}
-            desc={ohmi.description}
+            description={ohmi.description}
           />,
         )}
       </div>
