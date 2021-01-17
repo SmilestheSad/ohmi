@@ -4,7 +4,7 @@ import { useCollection } from 'react-firebase-hooks/firestore'
 import { useEffect, useState } from 'react'
 import { message } from 'antd'
 
-export default function OhmiesListener () {
+export default function OhmiesListener (props) {
   const [now] = useState(firebase.firestore.Timestamp.now())
   const [user] = useAuthState(firebase.auth())
   const [db] = useCollection(firebase.firestore()
@@ -15,12 +15,18 @@ export default function OhmiesListener () {
     if (db === null || db === undefined) {
       return
     }
-    console.log(db.docChanges)
     db.docChanges().forEach((change) => {
       // We also check for modified because firebase appends the timestamp later
       if ((change.type === 'added' || change.type === 'modified') &&
         change.doc.get('timeStamp') > now) {
-        message.info('You got a new ohmi!')
+        console.log('sent message')
+        console.log(change.type)
+        message.info(
+          {
+            content: 'You got a new ohmi!',
+            onClick: props.onMessageClicked,
+            style: { cursor: 'pointer' },
+          })
       }
     })
   }, [db, now])

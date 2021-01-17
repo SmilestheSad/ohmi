@@ -59,7 +59,8 @@ function App () {
           </div>
         </Content>
         <OhmiFooter/>
-        <OhmiesListener/>
+        <OhmiesListener onMessageClicked={() => setCurrentTab(pages.findIndex(
+          ({ component }) => component.type === ReceivedOhmies))}/>
       </Layout>
       <OhmiParticleBg/>
     </>
