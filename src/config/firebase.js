@@ -3,7 +3,7 @@ import 'firebase/auth'
 
 export let config = {
   apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: 'uomi-6ffa3.firebaseapp.com',
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
   projectId: 'uomi-6ffa3',
   storageBucket: 'uomi-6ffa3.appspot.com',
   messagingSenderId: '1008281417322',
