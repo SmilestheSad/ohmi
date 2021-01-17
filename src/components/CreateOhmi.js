@@ -4,6 +4,7 @@ import firebase from 'firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
 
 const { Option } = Select
+const { TextArea } = Input
 
 const layout = {
   labelCol: {
@@ -15,8 +16,8 @@ const layout = {
 }
 const tailLayout = {
   wrapperCol: {
-    offset: 10,
-    span: 16,
+    offset: 11,
+    span: 10,
   },
 }
 
@@ -47,7 +48,7 @@ export default function CreateOhmi () {
           description: values.cardDesc,
         })
     } else {
-      alert("Wow. Nothing Happened. I wonder why. Maybe you should log in first.")
+      alert('Wow. Nothing Happened. I wonder why. Maybe you should log in first.')
     }
     form.resetFields()
   }
@@ -57,19 +58,20 @@ export default function CreateOhmi () {
   }
 
   return (
-    <div>
-      {!user && <h2>Please log in first to send an Ohmi!</h2>}
-      <Form justify="center" {...layout} form={form} name="control-hooks"
+    <div style={{padding: '30px'}}>
+      <h2 style={{textAlign: 'center'}}>{user ? 'Create an Ohmi' : 'Please log in first to send an Ohmi!'}</h2>
+      <br/>
+      <Form justify='center' {...layout} form={form} name='control-hooks'
             onFinish={onFinish}>
         <Form.Item
-          name="cardReceiver"
-          label="To"
+          name='cardReceiver'
+          label='To'
           rules={[{ required: true }]}
         >
           <Select
             showSearch
             style={{ width: 200 }}
-            placeholder="Select a user to send an Ohmi to"
+            placeholder='Select a user to send an Ohmi to'
             filterOption={(input, option) => {
               return option.children.toLowerCase().includes(input.toLowerCase())
             }}
@@ -80,24 +82,24 @@ export default function CreateOhmi () {
           </Select>
         </Form.Item>
         <Form.Item
-          name="cardTitle"
-          label="Title"
+          name='cardTitle'
+          label='Title'
           rules={[{ required: true }]}
         >
           <Input/>
         </Form.Item>
         <Form.Item
-          name="cardDesc"
-          label="Description"
+          name='cardDesc'
+          label='Description'
           rules={[{ required: true }]}
         >
-          <Input/>
+          <TextArea rows={4} />
         </Form.Item>
         <Form.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit">
+          <Button type='primary' htmlType='submit'>
             Submit
           </Button>
-          <Button htmlType="button" onClick={onReset}>
+          <Button htmlType='button' onClick={onReset}>
             Reset
           </Button>
         </Form.Item>

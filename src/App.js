@@ -1,6 +1,7 @@
 import './App.less'
 import { useState } from 'react'
-import { Layout, Menu, Space } from 'antd'
+import { Avatar, Layout, Menu, Space} from 'antd'
+import { UserOutlined } from '@ant-design/icons'
 
 import About from './components/About'
 import LoginButton from './components/LoginButton'
@@ -28,11 +29,11 @@ function App () {
 
   return (
     <Layout>
-      <Header style={{ display: 'flex' }}>
-        <div className="logo"/>
+      <Header style={{display:'flex'}}>
+        <div className='logo'/>
         <Menu onClick={changeTab}
               selectedKeys={[currentTab]}
-              theme="dark" mode="horizontal">
+              theme='dark' mode='horizontal'>
           {pages.map(
             (val, idx) =>
               <Menu.Item key={idx}>{val.pageName}</Menu.Item>)
@@ -40,13 +41,13 @@ function App () {
         </Menu>
         <Space style={{ marginLeft: 'auto' }}>
           <FriendCodeDisplay/>
+          <Avatar style = {{alignSelf:'center'}} icon={<UserOutlined />} />
           <LoginButton style={{ alignSelf: 'center' }}/>
         </Space>
       </Header>
-      <Content
-        style={{ padding: '0 50px', marginTop: 20 }}>
+      <Content style={{ padding: '0 50px', marginTop:'30px' }}>
         <div
-          style={{ minHeight: 380 }}>
+          style={{ minHeight: '75vh' }}>
           {pages[currentTab].component}
         </div>
       </Content>
