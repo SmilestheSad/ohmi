@@ -5,6 +5,7 @@ import AddFriend from './AddFriend'
 import FriendCode from './FriendCode'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import firebase from 'firebase'
+import FriendList from './FriendList'
 export default function FriendDrawer () {
   const [visible, setVisible] = useState(false)
   const [user, loading] = useAuthState(firebase.auth())
@@ -23,6 +24,7 @@ export default function FriendDrawer () {
         footerStyle={{ textAlign: 'center' }}
       >
         <AddFriend/>
+        <FriendList/>
       </Drawer>
     </>
   )
