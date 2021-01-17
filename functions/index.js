@@ -13,7 +13,7 @@ const db = admin.firestore()
 
 const mrOhmiID = 'aPnLgRcpw3ND2HenRGoe'
 
-exports.mrOhmi = functions.firestore.document('ohmies/ohmiID')
+exports.mrOhmi = functions.firestore.document('ohmies/{ohmiID}')
   .onCreate((snap) => {
     const receiver = snap.get('receiver')
     console.log(snap.get('receiver'))
