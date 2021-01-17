@@ -52,6 +52,7 @@ export default function SentOhmies () {
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {ohmiData.map(ohmi =>
           <OhmiCard
+            isSent={true}
             key={ohmi.id}
             receiver={ohmi.receiver}
             sender={ohmi.sender}
