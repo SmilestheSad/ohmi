@@ -9,7 +9,8 @@ const { TextArea } = Input
 
 const layout = {
   labelCol: {
-    span: 7,
+    offset: 5,
+    span: 2,
   },
   wrapperCol: {
     span: 10,
@@ -17,8 +18,8 @@ const layout = {
 }
 const tailLayout = {
   wrapperCol: {
-    offset: 11,
-    span: 10,
+    offset: 10,
+    span: 4,
   },
 }
 
@@ -119,7 +120,7 @@ export default function CreateOhmi () {
             <TextArea rows={4}/>
           </Form.Item>
           <Form.Item {...tailLayout}>
-            <Button type='primary' htmlType='submit'>
+            <Button type='primary' htmlType='submit' style={{left: "1vw", marginRight: "4vw"}}>
               Submit
             </Button>
             <Button htmlType='button' onClick={onReset}>
