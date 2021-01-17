@@ -1,70 +1,27 @@
-# Getting Started with Create React App
+# <img src="https://ohmi.live/logo400.png" width="auto" height="36em" /> ohmi
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Now available at [ohmi.live](https://ohmi.live)!
 
-## Available Scripts
+## Inspiration
+Do me a favour, and I’ll do you one. Favours are short and sweet ways to give back to your friends for helping you out in times of need or to simply thank them for their generosity. However, they are terribly difficult to maintain. After a verbal agreement, favours are often forgotten shortly afterwards, if not documented properly. If one or the other party did not document correctly, ambiguity and doubt could brew. That’s all too complicated and serious for something as simple and generous as a favour. What if you could save a favour in the cloud, linked to you and your friend’s google accounts, so that you will never forget another favour again? Thus, ohmi was born.
 
-In the project directory, you can run:
+## What it does
+ohmi allows individuals to send personalized favours, or ohmies, over the internet to their friends. To do so, friends Alice and Bob first need to log in via their google accounts and add each other as friends via friend code. Rather than having both parties record a favour asynchronously and ambiguously, (e.g: Alice owes Bob a car ride at some unknown time in the future), Alice can simply send over an ohmi to Bob and it will be shown on both of their accounts (sent ohmies for Alice, received ohmies for Bob). When the favour is done, Bob can claim the ohmi, deleting it from both their references. You can have as many ohmies as you want, with as many friends as you want.
 
-### `npm start`
+## How we built it
+We built the app using React and Ant Design on our frontend and Firebase for authentication, storage, and hosting. We used name.com for our domain (domain.com had some troubles with providing us the domain name).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Challenges we ran into
+Interfacing with Firestore and managing database hooks turned out to be more of a challenge than we had expected. In many places, we had to check for null or undefined database snapshots to prevent uncaught errors from breaking the build. Ultimately, however, we’re confident that we’ve smoothed out the bugs to provide a smooth and seamless user experience.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Moreover, though Ant Design provided many powerful styled components, sometimes it couldn’t provide what we wanted, in which case it proved to be more of a hindrance than an asset. Ultimately, however, we believe that using this library made our prototyping much quicker.
 
-### `npm test`
+## Accomplishments that we're proud of
+We’re proud of building a polished app that scales with Firebase as well as adding the feature of friend codes to better protect user privacy. We’re also proud having almost immediately set up continuous deployment pipelines to have an MVP deployed as soon as possible.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## What we learned
+We learned how to use the whole Firebase API. None of the members on our team had ever used Firebase before, so it was quite a challenging experience to learn the APIs for Firestore, Authentication, and ultimately the Cloud Functions as well.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## What's next for ohmi
+The next step for ohmi is to implement app shortcuts, desktop notifications, and ultimately a mobile app for even greater convenience. We can also add more fields to the ohmi cards in the ohmi creation form to provide more creative freedom to users more flexibility, such as attaching monetary amounts or images/gifs to ohmies.
