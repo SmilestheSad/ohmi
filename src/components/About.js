@@ -54,7 +54,8 @@ export default function About () {
                                 title={
                                   <Typography.Title>{item.title}</Typography.Title>}
                 />
-                <ReactPlayer url={item.link} style={{ marginRight: '5vw' }}/>
+                <ReactPlayer url={item.link} width='30%'
+                             style={{ marginRight: '5vw' }}/>
               </List.Item>
             }}
           >
