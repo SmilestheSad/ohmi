@@ -48,6 +48,7 @@ export default function SentOhmies () {
   return (
     <div>
       <h1>Sent Ohmies</h1>
+      {user ?
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {ohmiData.map(ohmi =>
           <OhmiCard
@@ -60,6 +61,7 @@ export default function SentOhmies () {
           />,
         )}
       </div>
+      : <h2 style={{ textAlign: 'center' }}>Please log in first to see sent Ohmies!</h2>}
     </div>
   )
 }
