@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import { Layout, Typography, Anchor, Space } from 'antd'
 import { DoubleRightOutlined } from '@ant-design/icons'
 import { Row, Col } from 'antd';
+=======
+import { Layout } from 'antd'
+import { Typography } from 'antd'
+import { DoubleRightOutlined } from '@ant-design/icons'
+>>>>>>> b68ce851b15708b98d597753ee37a0c2e1838780
 
 const rowSpacing = {
   paddingBottom: "calc(20px + 3vw)"

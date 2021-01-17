@@ -38,7 +38,7 @@ export default function LoginButton ({ style }) {
           name: result.user.displayName,
           photoURL: result.user.photoURL,
           friendCode: friendCode,
-          friends: []
+          friends: ['00000000'], //mr ohmi
         })
       await db.collection('friendCodes')
         .doc(friendCode)
