@@ -12,23 +12,25 @@ const instruction = {
 export default function About () {
   return <div>
     <Layout style={{ textAlign: 'center' }}>
-      <Layout style={{ paddingBottom: 'calc(6em + 30px)' }}>
-        <Typography.Title
-          style={{ fontSize: 'max(15px,4em)', paddingTop: 'max(10px, 0.5em)' }}>Hello!
-          Welcome to ohmi!</Typography.Title>
-        <Typography.Paragraph
-          style={{ fontSize: 'max(20px, 2.5vw)', padding: '1vw 2vw 0 1vw' }}>Have
-          intangible gifts to give? Want to record your current favours?
-          ohmi provides an easy and synchronous way to send and receive favours
-          with friends. Login and add them to send and receive ohmies!
-
-        </Typography.Paragraph>
-        <Space style={{ justifyContent: 'center' }}><a
-          href="#tutorial"><DoubleRightOutlined rotate='90'
-                                                className="vert-move" style={{
-          fontSize: 'max(12px,4em)',
-          paddingTop: '2vw',
-        }}/></a></Space>
+      <Layout style={{
+        paddingBottom: 'calc(6em + 30px)',
+        minHeight: '100vh',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+        <div>
+          <Typography.Title
+            style={{
+              fontSize: 'max(15px,4em)',
+              paddingTop: 'max(10px, 0.5em)',
+            }}>ohmi: favours redefined</Typography.Title>
+          <Space style={{ justifyContent: 'center' }}><a
+            href="#tutorial"><DoubleRightOutlined rotate='90'
+                                                  className="vert-move" style={{
+            fontSize: 'max(12px,4em)',
+            paddingTop: '2vw',
+          }}/></a></Space>
+        </div>
       </Layout>
       <Layout>
         <div id="tutorial">
