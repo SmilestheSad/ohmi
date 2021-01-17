@@ -17,7 +17,8 @@ export default function FriendList () {
   const [friends, setFriends] = useState([])
 
   useEffect(() => {
-      if (userDoc === null || userDoc === undefined) {
+      if (userDoc === null || userDoc === undefined || !userDoc.exists) {
+        setFriendCodes(['invalid'])
         return
       }
       setFriendCodes(userDoc.data().friends)
