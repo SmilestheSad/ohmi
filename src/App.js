@@ -1,6 +1,7 @@
 import './App.less'
 import { useState } from 'react'
-import { Layout, Menu } from 'antd'
+import { Avatar, Layout, Menu, Space } from 'antd'
+import { UserOutlined } from '@ant-design/icons'
 
 import About from './components/About'
 import LoginButton from './components/LoginButton'
@@ -8,6 +9,8 @@ import SentOhmies from './components/SentOhmies'
 import ReceivedOhmies from './components/ReceivedOhmies'
 import CreateOhmi from './components/CreateOhmi'
 import OhmiFooter from './components/OhmiFooter'
+import FriendCodeDisplay from './components/FriendCodeDisplay'
+import OhmiesListener from './components/ReceivedOhmiesListener'
 
 const { Header, Content } = Layout
 
@@ -15,6 +18,9 @@ function App () {
   const [currentTab, setCurrentTab] = useState('0')
 
   const changeTab = ({ key }) => {
+    if (!key || key >= pages.length) {
+      return
+    }
     setCurrentTab(key)
   }
 
@@ -27,26 +33,31 @@ function App () {
 
   return (
     <Layout>
-      <Header style={{display:'flex'}}>
-        <div className="logo"/>
+      <Header>
+        <div className='logo'/>
         <Menu onClick={changeTab}
               selectedKeys={[currentTab]}
-              theme="dark" mode="horizontal">
+              theme='dark' mode='horizontal'
+        >
           {pages.map(
             (val, idx) =>
               <Menu.Item key={idx}>{val.pageName}</Menu.Item>)
           }
+          <Space style={{ float: 'right' }}>
+            <FriendCodeDisplay/>
+            <Avatar style={{ alignSelf: 'center' }} icon={<UserOutlined/>}/>
+            <LoginButton style={{ alignSelf: 'center' }}/>
+          </Space>
         </Menu>
-        <LoginButton style = {{alignSelf:'center', marginLeft:'auto'}}/>
       </Header>
-      <Content
-        style={{ padding: '0 50px', marginTop: 20 }}>
+      <Content style={{ padding: '0 50px', marginTop: '30px' }}>
         <div
-          style={{ minHeight: 380 }}>
+          style={{ minHeight: '75vh' }}>
           {pages[currentTab].component}
         </div>
       </Content>
       <OhmiFooter/>
+      <OhmiesListener/>
     </Layout>
   )
 }

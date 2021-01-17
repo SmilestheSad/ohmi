@@ -45,9 +45,9 @@ export default function ReceivedOhmies () {
 
   const handleClick = (id) => () => {
     firebase.firestore().collection('ohmies').doc(id).delete().then(function() {
-        console.log("Document successfully deleted!");
+        console.log('Document successfully deleted!');
     }).catch(function(error) {
-        console.error("Error removing document: ", error);
+        console.error('Error removing document: ', error);
     });
   }
 
