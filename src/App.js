@@ -27,7 +27,7 @@ function App () {
 
   return (
     <Layout>
-      <Header>
+      <Header style={{display:'flex'}}>
         <div className="logo"/>
         <Menu onClick={changeTab}
               selectedKeys={[currentTab]}
@@ -36,9 +36,8 @@ function App () {
             (val, idx) =>
               <Menu.Item key={idx}>{val.pageName}</Menu.Item>)
           }
-        <LoginButton style = {{float: "right", top: "100%", marginTop: 15 }}/>
         </Menu>
-
+        <LoginButton style = {{alignSelf:'center', marginLeft:'auto'}}/>
       </Header>
       <Content
         style={{ padding: '0 50px', marginTop: 20 }}>
