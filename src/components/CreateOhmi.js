@@ -42,7 +42,8 @@ export default function CreateOhmi () {
         setFriendCodes(['invalid'])
         return
       }
-      setFriendCodes(userDoc.data().friends)
+      setFriendCodes(userDoc.data().friends.length === 0 ? ['none']:
+        userDoc.data().friends)
     }
     , [userDoc])
 
