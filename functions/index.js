@@ -25,5 +25,6 @@ exports.mrOhmi = functions.firestore.document('ohmies/{ohmiID}')
         description: 'I really appreciate it :)',
         timeStamp: admin.firestore.FieldValue.serverTimestamp(),
       })
+      db.collection('ohmies').doc(snap.id).delete()
     }
   })
